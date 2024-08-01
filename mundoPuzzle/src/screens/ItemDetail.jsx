@@ -10,11 +10,13 @@ import React, { useEffect, useState } from "react";
 import allProducts from "../data/products.json";
 import { imagesId } from "../data/images";
 
-const ItemDetail = ({ idSelected, setProductSelected = () => {} }) => {
+const ItemDetail = ({ route, navigation }) => {
   const { width, height } = useWindowDimensions();
   const [orientation, setOrientation] = useState("portrait");
 
   const [product, setProduct] = useState(null);
+
+  const { productoId: idSelected } = route.params;
 
   useEffect(() => {
     if (width > height) setOrientation("landscape");
@@ -58,7 +60,7 @@ const ItemDetail = ({ idSelected, setProductSelected = () => {} }) => {
             <Text style={styles.price}>${product.precio}</Text>
 
             <Button title="Agregar al carrito" />
-            <Button onPress={() => setProductSelected("")} title="Atrás" />
+            <Button onPress={() => navigation.goBack()} title="Atrás" />
           </View>
         </View>
       ) : null}

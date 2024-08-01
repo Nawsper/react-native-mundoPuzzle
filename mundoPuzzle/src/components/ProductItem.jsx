@@ -4,7 +4,7 @@ import Card from "./Card";
 import { colors } from "../global/colors";
 import { images } from "../data/images";
 
-const ProductItem = ({ product, setItemIdSelected = () => {} }) => {
+const ProductItem = ({ product, navigation }) => {
   const imageSource =
     images[product.images.split("/").pop().split(".").shift()];
 
@@ -15,7 +15,9 @@ const ProductItem = ({ product, setItemIdSelected = () => {} }) => {
       </View>
       <Pressable
         style={styles.pressable}
-        onPress={() => setItemIdSelected(product.id)}
+        onPress={() =>
+          navigation.navigate("ItemDetail", { productoId: product.id })
+        }
       >
         <View style={styles.viewText}>
           <Text style={styles.textCategory}>{product.title}</Text>
