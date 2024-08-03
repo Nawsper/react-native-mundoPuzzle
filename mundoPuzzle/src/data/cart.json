@@ -1,0 +1,26 @@
+[
+    {
+        "id": "r2",
+        "title": "Puzzle Ravensburger Jardín Japonés de 1000 Piezas",
+        "piezas": "1000",
+        "precio": 10000,
+        "discountPercentage": 17.55,
+        "rating": 4.77,
+        "stock": 89,
+        "category": "Ravensburger",
+        "images": "../../assets/images/ravensburger/ravensburger-jardin-japones-1000.webp",
+        "quantity": 1
+    },
+    {
+        "id": "e3",
+        "title": "Puzzle Educa Londres al Atardecer de 2000 Piezas",
+        "piezas": "2000",
+        "precio": 12000,
+        "discountPercentage": 14.65,
+        "rating": 4.71,
+        "stock": 17,
+        "category": "Educa",
+        "images": "../../assets/images/educa/educa-londres-atardecer-2000.webp",
+        "quantity": 2
+    }
+]

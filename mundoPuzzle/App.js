@@ -1,14 +1,7 @@
 import { StyleSheet, View } from "react-native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { NavigationContainer } from "@react-navigation/native";
-import Home from './src/screens/Home';
-import Header from './src/components/Header'
 import { colors } from './src/global/colors';
 import { useFonts } from 'expo-font'
-import ItemListCategory from "./src/screens/ItemListCategory"
-import ItemDetail from "./src/screens/ItemDetail"
-
-const Stack = createNativeStackNavigator()
+import Navigator from './src/navigation/Navigator'
 
 export default function App() {
 
@@ -23,13 +16,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName="Home" screenOptions={({ route }) => ({ header: () => { return (<Header title={route.name === 'Home' ? "Categories" : route.name === "ItemListCategory" ? route.params.category : "Detail"} />) } })}>
-          <Stack.Screen name="Home" component={Home} />
-          <Stack.Screen name="ItemListCategory" component={ItemListCategory} />
-          <Stack.Screen name="ItemDetail" component={ItemDetail} />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <Navigator />
     </View>
   );
 }

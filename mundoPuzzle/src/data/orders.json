@@ -1,0 +1,64 @@
+[
+    {
+        "id": 1,
+        "userId": 2,
+        "createdAt": 1679869276580,
+        "items": [
+            {
+                "id": "r2",
+                "title": "Puzzle Ravensburger Jardín Japonés de 1000 Piezas",
+                "piezas": "1000",
+                "precio": 10000,
+                "discountPercentage": 17.55,
+                "rating": 4.77,
+                "stock": 89,
+                "category": "Ravensburger",
+                "images": "../../assets/images/ravensburger/ravensburger-jardin-japones-1000.webp",
+                "quantity": 1
+            },
+            {
+                "id": "e3",
+                "title": "Puzzle Educa Londres al Atardecer de 2000 Piezas",
+                "piezas": "2000",
+                "precio": 12000,
+                "discountPercentage": 14.65,
+                "rating": 4.71,
+                "stock": 17,
+                "category": "Educa",
+                "images": "../../assets/images/educa/educa-londres-atardecer-2000.webp",
+                "quantity": 2
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "userId": 2,
+        "createdAt": 1679832276580,
+        "items": [
+            {
+                "id": "c2",
+                "title": "Puzzle Clementoni Colorboom Canicas de 1000 Piezas",
+                "piezas": "1000",
+                "precio": 7000,
+                "discountPercentage": 3.34,
+                "rating": 4.84,
+                "stock": 127,
+                "category": "Clementoni",
+                "images": "../../assets/images/clementoni/clementoni-colorboom-1000.webp",
+                "quantity": 1
+            },
+            {
+                "id": "m4",
+                "title": "Puzzle de madera Fairy Bird de 3000 Piezas",
+                "piezas": "3000",
+                "precio": 25000,
+                "discountPercentage": 10.94,
+                "rating": 4.93,
+                "stock": 146,
+                "category": "Wooden",
+                "images": "../../assets/images/madera/puzzle-madera-3000-pajaro.webp",
+                "quantity": 3
+            }
+        ]
+    }
+]
