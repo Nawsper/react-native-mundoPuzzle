@@ -1,9 +1,9 @@
 import { FlatList, StyleSheet, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import { colors } from "../global/colors";
-import products from "../data/products.json";
 import Search from "../components/Search";
 import ProductItem from "../components/ProductItem";
+import { useGetProductsByCategoryQuery } from "../services/shopServices";
 
 const ItemListCategory = ({ navigation, route }) => {
   const [keyWord, setKeyword] = useState("");
@@ -11,6 +11,12 @@ const ItemListCategory = ({ navigation, route }) => {
   const [error, setError] = useState("");
 
   const { category: categorySelected } = route.params;
+
+  const {
+    data: productsFetched,
+    error: errorFetched,
+    isLoading,
+  } = useGetProductsByCategoryQuery(categorySelected);
 
   useEffect(() => {
     const regexDigits = /\d/;
@@ -31,15 +37,14 @@ const ItemListCategory = ({ navigation, route }) => {
 
     console.log(error);
 
-    const productsPreFiltered = products.filter(
-      (product) => product.category === categorySelected
-    );
-    const productsFilter = productsPreFiltered.filter((product) =>
-      product.title.toLocaleLowerCase().includes(keyWord.toLocaleLowerCase())
-    );
-    console.log(productsFilter);
-    setProductsFiltered(productsFilter);
-  }, [keyWord, categorySelected]);
+    if (!isLoading) {
+      const productsFilter = productsFetched.filter((product) =>
+        product.title.toLocaleLowerCase().includes(keyWord.toLocaleLowerCase())
+      );
+      setProductsFiltered(productsFilter);
+      setError("");
+    }
+  }, [keyWord, categorySelected, productsFetched, isLoading]);
 
   return (
     <View style={styles.flatListContainer}>

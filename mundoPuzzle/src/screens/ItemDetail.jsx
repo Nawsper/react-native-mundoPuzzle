@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from "react";
 import {
   Button,
   Image,
@@ -6,30 +7,22 @@ import {
   View,
   useWindowDimensions,
 } from "react-native";
-import React, { useEffect, useState } from "react";
-import allProducts from "../data/products.json";
+
 import { imagesId } from "../data/images";
+import { useGetProductByIdQuery } from "../services/shopServices";
 
 const ItemDetail = ({ route, navigation }) => {
   const { width, height } = useWindowDimensions();
   const [orientation, setOrientation] = useState("portrait");
 
-  const [product, setProduct] = useState(null);
-
   const { productoId: idSelected } = route.params;
+
+  const { data: product } = useGetProductByIdQuery(idSelected);
 
   useEffect(() => {
     if (width > height) setOrientation("landscape");
     else setOrientation("portrait");
   }, [width, height]);
-
-  useEffect(() => {
-    const productSelected = allProducts.find(
-      (product) => product.id === idSelected
-    );
-
-    setProduct(productSelected);
-  }, [idSelected]);
 
   return (
     <View>

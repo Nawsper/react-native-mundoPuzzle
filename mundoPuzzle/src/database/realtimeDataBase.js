@@ -1,0 +1,1 @@
+export const baseUrl = "https://mundopuzzle-578e8-default-rtdb.firebaseio.com/"
