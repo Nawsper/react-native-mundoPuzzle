@@ -1,5 +1,4 @@
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
-import React from "react";
 import Card from "./Card";
 import { colors } from "../global/colors";
 import { images } from "../data/images";

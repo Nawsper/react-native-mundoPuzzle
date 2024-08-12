@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Button,
   Image,
@@ -10,12 +10,17 @@ import {
 
 import { imagesId } from "../data/images";
 import { useGetProductByIdQuery } from "../services/shopServices";
+import { useDispatch } from "react-redux";
+import { addCartItem } from "../features/cart/CartSlice";
 
 const ItemDetail = ({ route, navigation }) => {
   const { width, height } = useWindowDimensions();
   const [orientation, setOrientation] = useState("portrait");
 
   const { productoId: idSelected } = route.params;
+  console.log("Producto ID seleccionado:", idSelected);
+
+  const dispatch = useDispatch();
 
   const { data: product } = useGetProductByIdQuery(idSelected);
 
@@ -23,6 +28,16 @@ const ItemDetail = ({ route, navigation }) => {
     if (width > height) setOrientation("landscape");
     else setOrientation("portrait");
   }, [width, height]);
+
+  const handleAddCart = () => {
+    dispatch(addCartItem);
+    dispatch(addCartItem({ ...product, quantity: 1 }));
+  };
+
+  if (!product) {
+    console.log("Product not found");
+    return <Text>Product not found</Text>;
+  }
 
   return (
     <View>
@@ -52,7 +67,7 @@ const ItemDetail = ({ route, navigation }) => {
             <Text>{product.description}</Text>
             <Text style={styles.price}>${product.precio}</Text>
 
-            <Button title="Agregar al carrito" />
+            <Button onPress={handleAddCart} title="Agregar al carrito" />
             <Button onPress={() => navigation.goBack()} title="Atrás" />
           </View>
         </View>

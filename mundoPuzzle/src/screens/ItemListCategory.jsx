@@ -1,5 +1,5 @@
 import { FlatList, StyleSheet, View } from "react-native";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { colors } from "../global/colors";
 import Search from "../components/Search";
 import ProductItem from "../components/ProductItem";
