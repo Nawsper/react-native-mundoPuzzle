@@ -5,7 +5,8 @@ import SubmitButton from "../components/SubmitButton";
 import InputForm from "../components/InputForm";
 import { useSignUpMutation } from "../services/authService";
 import { useDispatch } from "react-redux";
-import { setUser } from "../features/user/UserSlice.js";
+import { signupSchema } from "../validations/singUpScheme";
+import { setUser } from "../features/user/UserSlice";
 
 const Signup = ({ navigation }) => {
   const [email, setEmail] = useState("");
@@ -24,15 +25,35 @@ const Signup = ({ navigation }) => {
         setUser({
           email: result.data.email,
           idToken: result.data.idToken,
+          localId: result.data.localId,
         })
       );
     }
   }, [result]);
 
   const onSubmit = () => {
-    triggerSignUp({ email, password, returnSecureToken: true });
+    try {
+      setErrorMail("");
+      setErrorPassword("");
+      setErrorConfirmPassword("");
+      signupSchema.validateSync({ email, password, confirmPassword });
+      triggerSignUp({ email, password, returnSecureToken: true });
+    } catch (err) {
+      console.log("Signup del error");
+      console.log(err.path);
+      console.log(err.message);
+      switch (err.path) {
+        case "email":
+          setErrorMail(err.message);
+        case "password":
+          setErrorPassword(err.message);
+        case "confirmPassword":
+          setErrorConfirmPassword(err.message);
+        default:
+          break;
+      }
+    }
   };
-
   return (
     <View style={styles.main}>
       <View style={styles.container}>

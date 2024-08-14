@@ -1,15 +1,33 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { colors } from "../global/colors";
 import InputForm from "../components/InputForm";
 import SubmitButton from "../components/SubmitButton";
+import { useSignInMutation } from "../services/authService";
+import { useDispatch } from "react-redux";
+import { setUser } from "../features/user/UserSlice";
 
 const Login = ({ navigation }) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const dispatch = useDispatch();
+
+  const [triggerSignIn, result] = useSignInMutation();
+
+  useEffect(() => {
+    if (result.isSuccess) {
+      dispatch(
+        setUser({
+          email: result.data.email,
+          idToken: result.data.idToken,
+          localId: result.data.localId,
+        })
+      );
+    }
+  }, [result]);
 
   const onSubmit = () => {
-    //crear logica
+    triggerSignIn({ email, password, returnSecureToken: true });
   };
 
   return (
@@ -24,7 +42,7 @@ const Login = ({ navigation }) => {
           isSecure={true}
         />
         <SubmitButton onPress={onSubmit} title="Enviar" />
-        <Text style={styles.sub}>Not have an account?</Text>
+        <Text style={styles.sub}>No tienes una cuneta?</Text>
 
         <Pressable onPress={() => navigation.navigate("Signup")}>
           <Text style={styles.subLink}>Registrarse</Text>

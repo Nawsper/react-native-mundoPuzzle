@@ -3,6 +3,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeStackNavigator from "./HomeStackNavigator";
 import CartStackNavigator from "./CartStackNavigator";
 import OrderStackNavigator from "./OrderStackNavigator";
+import MyProfileStackNavigator from "./MyProfileStackNavigator";
 import Header from "../components/Header";
 import { colors } from "../global/colors";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
@@ -64,6 +65,23 @@ const BottomTabNavigator = () => {
               <View>
                 <FontAwesome5
                   name="receipt"
+                  size={24}
+                  color={focused ? colors.clrPastel1 : colors.clrLight}
+                />
+              </View>
+            );
+          },
+        }}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={MyProfileStackNavigator}
+        options={{
+          tabBarIcon: ({ focused }) => {
+            return (
+              <View>
+                <FontAwesome5
+                  name="user"
                   size={24}
                   color={focused ? colors.clrPastel1 : colors.clrLight}
                 />
